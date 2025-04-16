@@ -2,7 +2,7 @@
 
 NAME = Account
 COMPILER = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 #===========================================COLORS=====================================#
 
@@ -12,9 +12,9 @@ YELLOW = \033[0;33m
 
 #===========================================SOURCES=====================================#
 
-SRCS = *.cpp
-OBJ_DIR = object/
-OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.cpp=.o))
+SRC_FILES = $(wildcard *.cpp)
+OBJ_DIR = object
+OBJS = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(SRC_FILES))
 
 #===========================================RULES=====================================#
 
@@ -23,28 +23,22 @@ all: $(NAME)
 $(OBJ_DIR):
 	@mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)%.o: %.cpp | $(OBJ_DIR)
-	@${COMPILER} $(FLAGS) -c $< -o $@
+$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
+	@$(COMPILER) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
-	@if [ -f $(NAME) ] && [ ! -n "$$(find $(OBJS) -newer $(NAME) 2>/dev/null)" ]; then \
-        echo "$(YELLOW)$(NAME) has already been compiled$(YELLOW)"; \
-    else \
-        echo "$(GREEN)compiling $(NAME)$(YELLOW)"; \
-        $(COMPILER) $(FLAGS) -o $(NAME) $(OBJS); \
-        echo "$(GREEN)$(NAME) compiled successfully$(YELLOW)"; \
-    fi
+	@echo "$(GREEN)Linking $(NAME)$(YELLOW)"
+	@$(COMPILER) $(FLAGS) -o $(NAME) $(OBJS)
+	@echo "$(GREEN)$(NAME) compiled successfully$(YELLOW)"
 
 clean:
-	@echo "$(RED)removing $(OBJS)$(YELLOW)"
-	rm -rf $(OBJ_DIR)
-	@echo "$(GREEN)$(NAME) removed successfully$(YELLOW)"
+	@echo "$(RED)Cleaning object files$(YELLOW)"
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	rm -f $(NAME)
-	@echo "$(GREEN)$(NAME) removed successfully$(YELLOW)"
-
+	@echo "$(RED)Removing binary $(NAME)$(YELLOW)"
+	@rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re $(OBJ_DIR)
+.PHONY: all clean fclean re
