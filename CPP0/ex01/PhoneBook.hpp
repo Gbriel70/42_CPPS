@@ -121,12 +121,12 @@ class PhoneBook
 		}
 		index--;
 
-		std::cout << BLUE << "Detalhes do Contato:" << RESET << std::endl;
-		std::cout << BLUE << "Nome: " << RESET << contacts[index].getFirstName() << std::endl;
-		std::cout << BLUE << "Sobrenome: " << RESET << contacts[index].getLastName() << std::endl;
-		std::cout << BLUE << "Apelido: " << RESET << contacts[index].getNickname() << std::endl;
-		std::cout << BLUE << "Número de Telefone: " << RESET << contacts[index].getPhoneNumber() << std::endl;
-		std::cout << BLUE << "Segredo: " << RESET << contacts[index].getDarkSecret() << std::endl;
+		std::cout << BLUE << "Contact Details:" << RESET << std::endl;
+		std::cout << BLUE << "Name: " << RESET << contacts[index].getFirstName() << std::endl;
+		std::cout << BLUE << "Surname: " << RESET << contacts[index].getLastName() << std::endl;
+		std::cout << BLUE << "Nickname: " << RESET << contacts[index].getNickname() << std::endl;
+		std::cout << BLUE << "Number: " << RESET << contacts[index].getPhoneNumber() << std::endl;
+		std::cout << BLUE << "Secret: " << RESET << contacts[index].getDarkSecret() << std::endl;
 	}
 
 	void addContact(std::string first_name, std::string last_name,
