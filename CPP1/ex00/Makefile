@@ -1,6 +1,6 @@
 #===========================================SETS=====================================#
 
-NAME = megaphone
+NAME = ZombieHorde
 COMPILER = c++
 FLAGS = -Wall -Wextra -Werror
 
@@ -12,7 +12,7 @@ YELLOW = \033[0;33m
 
 #===========================================SOURCES=====================================#
 
-SRCS = megaphone.cpp
+SRCS = $(wildcard *.cpp)
 OBJ_DIR = object/
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.cpp=.o))
 
