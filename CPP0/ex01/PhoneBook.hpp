@@ -6,7 +6,7 @@
 /*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:41:49 by gcosta-m          #+#    #+#             */
-/*   Updated: 2025/04/22 09:41:50 by gcosta-m         ###   ########.fr       */
+/*   Updated: 2025/04/22 16:35:32 by gcosta-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ class Contact
 
 	bool setPhoneNumber(std::string number)
 	{
+		if (!isdigit(number[0]))
+		{
+			std::cout << RED << "Phone number must start with a digit!" << RESET << std::endl;
+			return (false);
+		}
 		if (number.length() > 15)
 		{
 			std::cout << RED << "Phone number is too long!" << RESET << std::endl;
@@ -101,6 +106,28 @@ class PhoneBook
   public:
 	PhoneBook();
 	~PhoneBook();
+
+	int getTotalContacts() const
+	{
+		return (total_contacts);
+	}
+
+	void displayContactDetails(int index)
+	{
+		if (index < 1 || index > total_contacts)
+		{
+			std::cout << RED << "invalid index!" << RESET << std::endl;
+			return ;
+		}
+		index--;
+
+		std::cout << BLUE << "Detalhes do Contato:" << RESET << std::endl;
+		std::cout << BLUE << "Nome: " << RESET << contacts[index].getFirstName() << std::endl;
+		std::cout << BLUE << "Sobrenome: " << RESET << contacts[index].getLastName() << std::endl;
+		std::cout << BLUE << "Apelido: " << RESET << contacts[index].getNickname() << std::endl;
+		std::cout << BLUE << "Número de Telefone: " << RESET << contacts[index].getPhoneNumber() << std::endl;
+		std::cout << BLUE << "Segredo: " << RESET << contacts[index].getDarkSecret() << std::endl;
+	}
 
 	void addContact(std::string first_name, std::string last_name,
 		std::string nickname, std::string phone_number, std::string dark_secret)
@@ -155,7 +182,7 @@ class PhoneBook
 
 		const int index_width = 8;
 		const int data_width = 12;
-		const int total_width = index_width + data_width * 5 + 7;
+		const int total_width = index_width + data_width * 3 + 5;
 
 		std::cout << GREEN << "+" << std::string(total_width - 2,
 			'-') << "+" << RESET << std::endl;
@@ -164,8 +191,6 @@ class PhoneBook
 					<< "|" << std::setw(data_width) << "First Name "
 					<< "|" << std::setw(data_width) << "Last Name "
 					<< "|" << std::setw(data_width) << "Nickname "
-					<< "|" << std::setw(data_width) << "Phone"
-					<< "|" << std::setw(data_width) << "Dark Secret"
 					<< "|" << RESET << std::endl;
 
 		std::cout << GREEN << "+" << std::string(total_width - 2,
@@ -181,10 +206,6 @@ class PhoneBook
 			std::cout << BLUE << std::setw(data_width) << truncate(contacts[i].getLastName()) << RESET;
 			std::cout << GREEN << "|" << RESET;
 			std::cout << BLUE << std::setw(data_width) << truncate(contacts[i].getNickname()) << RESET;
-			std::cout << GREEN << "|" << RESET;
-			std::cout << BLUE << std::setw(data_width) << truncate(contacts[i].getPhoneNumber()) << RESET;
-			std::cout << GREEN << "|" << RESET;
-			std::cout << BLUE << std::setw(data_width) << truncate(contacts[i].getDarkSecret()) << RESET;
 			std::cout << GREEN << "|" << RESET << std::endl;
 		}
 

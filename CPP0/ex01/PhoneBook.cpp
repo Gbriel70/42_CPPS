@@ -6,7 +6,7 @@
 /*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 09:41:42 by gcosta-m          #+#    #+#             */
-/*   Updated: 2025/04/22 09:41:43 by gcosta-m         ###   ########.fr       */
+/*   Updated: 2025/04/22 16:35:21 by gcosta-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,25 @@ int	main(void)
 		}
 
 		else if (command == "SEARCH")
+		{
 			phonebook.displayContacts();
+
+			if (phonebook.getTotalContacts() > 0)
+			{
+				std::string indexStr;
+				std::cout << MAGENTA << "put index: " << RESET;
+				std::getline(std::cin, indexStr);
+				try
+				{
+					int index = std::stoi(indexStr);
+					phonebook.displayContactDetails(index);
+				}
+				catch (std::exception &e)
+				{
+					std::cout << RED << "Invalid index!" << RESET << std::endl;
+				}
+			}
+		}
 
 		else if (command == "EXIT")
 			break ;
