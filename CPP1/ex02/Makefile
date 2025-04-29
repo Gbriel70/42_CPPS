@@ -1,6 +1,6 @@
 #===========================================SETS=====================================#
 
-NAME = Zombie
+NAME = brain
 COMPILER = c++
 FLAGS = -Wall -Wextra -Werror
 

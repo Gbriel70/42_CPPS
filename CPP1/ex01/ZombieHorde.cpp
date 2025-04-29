@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ZombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/29 11:02:08 by gcosta-m          #+#    #+#             */
-/*   Updated: 2025/04/29 11:02:09 by gcosta-m         ###   ########.fr       */
+/*   Created: 2025/04/23 10:49:53 by gcosta-m          #+#    #+#             */
+/*   Updated: 2025/04/23 10:49:55 by gcosta-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-int main(void)
+Zombie	*ZombieHorde(int x, std::string name)
 {
-	Zombie zombie1;
-	Zombie zombie2("Zombie2");
-	Zombie *zombie3 = newZombie("Zombie3");
+	Zombie *horde = new Zombie[x];
 
-	zombie1.announce();
-	cout << "\n------------------------" << endl;
-	zombie2.announce();
-	cout << "\n------------------------" << endl;
-	zombie3->announce();
-	cout << "\n------------------------" << endl;
-
-	randomChump(" Bola ");
-	cout << "\n------------------------" << endl;
-	delete zombie3;
-	return (0);
+	for (int i = 0; i < x; i++)
+		horde[i].reName(name);
+	return (horde);
 }

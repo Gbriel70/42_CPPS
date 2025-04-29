@@ -1,6 +1,6 @@
 #===========================================SETS=====================================#
 
-NAME = Zombie
+NAME = ZombieHorde
 COMPILER = c++
 FLAGS = -Wall -Wextra -Werror
 

@@ -1,6 +1,6 @@
 #===========================================SETS=====================================#
 
-NAME = Zombie
+NAME = harlFilter
 COMPILER = c++
 FLAGS = -Wall -Wextra -Werror
 

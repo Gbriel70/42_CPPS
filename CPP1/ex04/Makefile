@@ -1,6 +1,6 @@
 #===========================================SETS=====================================#
 
-NAME = Zombie
+NAME = Unnecessary_violence
 COMPILER = c++
 FLAGS = -Wall -Wextra -Werror
 
