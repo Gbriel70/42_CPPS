@@ -2,7 +2,7 @@
 
 NAME = Polymorphism
 COMPILER = c++
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -std=c++98
 
 #===========================================COLORS=====================================#
 

@@ -1,15 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Wrong_Animal.hpp                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/23 15:30:08 by gcosta-m          #+#    #+#             */
+/*   Updated: 2025/07/29 11:32:10 by gcosta-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef WRONG_ANIMAL_HPP
 #define WRONG_ANIMAL_HPP
 
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 class WrongAnimal
 {
     protected:
-        string _type;
+        std::string _type;
 
     public:
         WrongAnimal();
@@ -17,10 +27,10 @@ class WrongAnimal
         WrongAnimal &operator=(const WrongAnimal &other);
         virtual ~WrongAnimal();
 
-        void setType(const string &type);
-        string getType() const;
+        void setType(const std::string &type);
+        std::string getType() const;
 
-        virtual void makeSound() const;
+        void makeSound() const;
 
 };
 

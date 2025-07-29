@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/23 15:35:27 by gcosta-m          #+#    #+#             */
+/*   Updated: 2025/07/29 11:38:47 by gcosta-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Dog.hpp"
 
 Dog::Dog() : Animal("Dog") 
 {
+	std::cout << "Dog constructor called." << std::endl;
     brain = new Brain();
 }
 
@@ -22,6 +35,7 @@ Dog &Dog::operator=(const Dog &other) {
 }
 
 Dog::~Dog() {
+	std::cout << "Dog destructor called." << std::endl;
     delete brain;
 }
 

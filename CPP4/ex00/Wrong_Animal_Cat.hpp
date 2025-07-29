@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Wrong_Animal_Cat.hpp                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/23 15:29:58 by gcosta-m          #+#    #+#             */
+/*   Updated: 2025/07/23 15:32:27 by gcosta-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef WRONG_ANIMAL_CAT_HPP
 #define WRONG_ANIMAL_CAT_HPP
 
 #include "Wrong_Animal.hpp"
-
-using namespace std;
 
 class WrongCat : public WrongAnimal
 {
@@ -13,7 +23,7 @@ class WrongCat : public WrongAnimal
         WrongCat &operator=(const WrongCat &other);
         ~WrongCat();
 
-        void makeSound() const override;
+        void makeSound() const;
 };
 
 #endif
