@@ -6,7 +6,7 @@
 /*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 10:59:43 by gcosta-m          #+#    #+#             */
-/*   Updated: 2025/09/15 10:59:44 by gcosta-m         ###   ########.fr       */
+/*   Updated: 2025/09/15 13:05:18 by gcosta-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,16 @@ void Bureaucrat::decrementGrade()
 	if (getGrade() >= 150)
 		throw GradeTooLowException();
 	grade++;
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return "Grade too high";
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return "Grade too low";
 }
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) 

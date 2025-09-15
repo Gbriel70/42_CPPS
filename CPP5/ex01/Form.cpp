@@ -6,7 +6,7 @@
 /*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 11:00:08 by gcosta-m          #+#    #+#             */
-/*   Updated: 2025/09/15 11:00:09 by gcosta-m         ###   ########.fr       */
+/*   Updated: 2025/09/15 13:17:50 by gcosta-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void Form::beSigned(const Bureaucrat &bureaucrat)
         throw std::runtime_error("Form already signed");
     }
     if (bureaucrat.getGrade() > signGrade) {
-        throw std::out_of_range("Grade too low");
+        throw GradeTooLowException();
     }
     isSigned = true;
     std::cout << "Form signed: " << name << std::endl;
