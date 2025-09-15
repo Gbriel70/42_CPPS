@@ -1,12 +1,31 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name), grade(grade) 
+Bureaucrat::Bureaucrat() : name("Default"), grade(150) 
 {
 	std::cout << "Bureaucrat created: " << GREEN << name << ", Grade: " << grade << RESET << std::endl;
+}
+
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : name(name), grade(grade) 
+{
 	if (grade < 1)
-	throw std::out_of_range("Grade too low");
+		throw std::out_of_range("Grade too low");
 	if (grade > 150)
-	throw std::out_of_range("Grade too high");
+		throw std::out_of_range("Grade too high");
+	std::cout << "Bureaucrat created: " << GREEN << name << ", Grade: " << grade << RESET << std::endl;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat& other) : name(other.name), grade(other.grade) 
+{
+	std::cout << "Bureaucrat copied: " << GREEN << name << ", Grade: " << grade << RESET << std::endl;
+}
+
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) 
+{
+	if (this != &other) {
+		grade = other.grade;
+		std::cout << "Bureaucrat assigned: " << GREEN << name << ", Grade: " << grade << RESET << std::endl;
+	}
+	return *this;
 }
 
 Bureaucrat::~Bureaucrat() 
@@ -34,12 +53,22 @@ int Bureaucrat::setGrade(int newGrade)
 
 void Bureaucrat::incrementGrade() 
 {
-	setGrade(getGrade() + 1);
+	if (getGrade() <= 1)
+		throw GradeTooHighException();
+	grade--;
 }
 
 void Bureaucrat::decrementGrade() 
 {
-	setGrade(getGrade() - 1);
+	if (getGrade() >= 150)
+		throw GradeTooLowException();
+	grade++;
+}
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) 
+{
+	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
+	return os;
 }
 
 void tryCreateBureaucrat(const std::string& name, int grade)
