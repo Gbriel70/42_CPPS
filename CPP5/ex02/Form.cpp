@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/15 11:00:33 by gcosta-m          #+#    #+#             */
+/*   Updated: 2025/09/15 11:00:34 by gcosta-m         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Form.hpp"
 
 Form::Form() : name("Default"), isSigned(false), signGrade(150), execGrade(150)
@@ -78,6 +90,10 @@ const char* Form::GradeTooLowException::what() const throw()
     return "Grade too low";
 }
 
+const char* Form::FormNotSignedException::what() const throw()
+{
+	return "Form not signed";
+}
 
 std::ostream &operator<<(std::ostream &os, const Form &form)
 {
@@ -99,4 +115,13 @@ Form *tryCreateForm(const std::string &name, int signGrade, int execGrade)
         std::cerr << RED << "Failed to create form: " << e.what() << "\n" << RESET << std::endl;
         return NULL;
     }
+}
+
+void Form::execute(const Bureaucrat &executor) const
+{
+	if (!isSigned)
+		throw FormNotSignedException();
+	if (executor.getGrade() > execGrade)
+		throw GradeTooLowException();
+	std::cout << "Form " << name << " executed by " << executor.getName() << std::endl;
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/15 11:00:08 by gcosta-m          #+#    #+#             */
-/*   Updated: 2025/09/15 11:00:09 by gcosta-m         ###   ########.fr       */
+/*   Created: 2025/09/15 11:00:33 by gcosta-m          #+#    #+#             */
+/*   Updated: 2025/09/15 11:10:11 by gcosta-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,14 @@ const char* Form::GradeTooLowException::what() const throw()
     return "Grade too low";
 }
 
+const char* Form::FormNotSignedException::what() const throw()
+{
+	return "Form not signed";
+}
 
 std::ostream &operator<<(std::ostream &os, const Form &form)
 {
-    os << "Form: " << form.getName() << ", Signed: " << (form.getIsSigned() ? "Yes" : "No")
-       << ", Sign Grade: " << form.getSignGrade() << ", Exec Grade: " << form.getExecGrade();
+    os << "Form: " << form.getName() << ", Signed: " << (form.getIsSigned() ? "Yes" : "No") << ", Sign Grade: " << form.getSignGrade() << ", Exec Grade: " << form.getExecGrade();
     return os;
 }
 
@@ -111,4 +114,13 @@ Form *tryCreateForm(const std::string &name, int signGrade, int execGrade)
         std::cerr << RED << "Failed to create form: " << e.what() << "\n" << RESET << std::endl;
         return NULL;
     }
+}
+
+void Form::execute(const Bureaucrat &executor) const
+{
+	if (!isSigned)
+		throw FormNotSignedException();
+	if (executor.getGrade() > execGrade)
+		throw GradeTooLowException();
+	std::cout << "Form " << name << " executed by " << executor.getName() << std::endl;
 }

@@ -37,7 +37,7 @@ $(NAME): $(OBJS)
 
 clean:
 	@echo "$(RED)removing $(OBJS)$(YELLOW)"
-	if [ -f garden_shrubbery ]; then rm -f garden_shrubbery; fi
+	if [ -f office_shrubbery ]; then rm -f office_shrubbery; fi
 	rm -rf $(OBJ_DIR)
 	@echo "$(GREEN)$(NAME) removed successfully$(YELLOW)"
 

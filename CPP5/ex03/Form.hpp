@@ -6,7 +6,7 @@
 /*   By: gcosta-m <gcosta-m@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 11:00:44 by gcosta-m          #+#    #+#             */
-/*   Updated: 2025/09/15 11:00:45 by gcosta-m         ###   ########.fr       */
+/*   Updated: 2025/09/15 11:17:22 by gcosta-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class Form
 		Form(const std::string &name, int signGrade, int execGrade);
 		Form(const Form &other);
 		Form &operator=(const Form &other);
-		~Form();
+		virtual ~Form();
 
 		const std::string &getName() const;
 		bool getIsSigned() const;
