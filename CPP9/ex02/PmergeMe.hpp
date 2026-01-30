@@ -30,9 +30,9 @@ class PmergeMe {
 
 	private:
 		std::vector<int>	_vector;
-		std::deque<int> 	_deque;
-    double						_vectorTime;
-    double						_dequeTime;
+		std::deque<int>		_deque;
+    	double				_vectorTime;
+    	double				_dequeTime;
 		long unsigned int	_pairSizeVector;
 		long unsigned int	_pairSizeDeque;
 		
